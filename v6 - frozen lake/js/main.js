@@ -21,8 +21,8 @@ $(document).ready( function(){
   
   //Setup the camera
   camera = new THREE.PerspectiveCamera( 45, sw / sh, 0.1, 6500 );
-  camera.position.y = 1300;
-  camera.position.z = 2000;
+  camera.position.y = 1000;
+  camera.position.z = 1500;
 
   //Setup the scene
   scene = new THREE.Scene();
@@ -56,7 +56,7 @@ for( var i = 0; i < 500; i++ ){
   //Collada perso
   var loaderCharacter = new THREE.ColladaLoader();
   loaderCharacter.options.convertUpAxis = true;
-  loaderCharacter.load( 'model.dae', function ( collada ) {
+  loaderCharacter.load( 'collada/traineau.dae', function ( collada ) {
     dae = collada.scene;
     skin = collada.skins[ 0 ];
 
@@ -66,7 +66,8 @@ for( var i = 0; i < 500; i++ ){
       character.castShadow = true;
       character.receiveShadow = true;
     }
-    character.position.y = 60;
+    character.position.y = 80;
+    character.rotation.y = 90 * ( Math.PI / 180);
     character.add( camera )
     scene.add( character );
 
@@ -78,7 +79,7 @@ for( var i = 0; i < 500; i++ ){
     camera.lookAt( character.position );
 
     //Particules trail
-    snowTrailParticules = new THREE.Geometry;
+   /* snowTrailParticules = new THREE.Geometry;
     for (var i = 0; i < 300; i++) {
        var particle = new THREE.Vector3(Math.random() * 150 - 75, Math.random() * 350, Math.random() * 150 - 75);
        snowTrailParticules.vertices.push(particle);
@@ -92,7 +93,7 @@ for( var i = 0; i < 500; i++ ){
     snowTrailEmitter.position.z = 80;
     snowTrailEmitter.rotation.x = 90 * ( Math.PI / 180);
      
-    character.add(snowTrailEmitter);
+    character.add(snowTrailEmitter);*/
 
 
   
@@ -117,22 +118,22 @@ var pointLight =
   //Collada igloo
     var loaderTree = new THREE.ColladaLoader();
     loaderTree.options.convertUpAxis = true;
-    loaderTree.load( 'tree32.dae', function ( collada ) {
+    loaderTree.load( 'collada/tree1.dae', function ( collada ) {
       dae = collada.scene;
       skin = collada.skins[ 0 ];
 
-        for( var t = 0; t < 150; t++ ){  
+        for( var t = 0; t < 40; t++ ){  
           //Character creation
-          //tree = new THREE.Mesh( collada.scene.children[ 0 ].geometry, collada.scene.children[ 0 ].material );
-          tree = new THREE.Mesh( collada.scene.children[ 0 ].geometry, new THREE.MeshBasicMaterial( { color: 0x034300 } ) );
+          tree = new THREE.Mesh( collada.scene.children[ 0 ].geometry, collada.scene.children[ 0 ].material );
+          //tree = new THREE.Mesh( collada.scene.children[ 0 ].geometry, new THREE.MeshBasicMaterial( { color: 0x034300 } ) );
           //console.log(tree);
           if( castShadow ){
             tree.castShadow = true;
             tree.receiveShadow = true;
           }
-          tree.position.x = ( Math.random() * 9000 ) - 4500;
+          tree.position.x = ( Math.random() * 8500 ) - 4250;
           tree.position.y = -10;
-          tree.position.z = ( Math.random() * 9000 ) - 4500;
+          tree.position.z = ( Math.random() * 8500 ) - 4250;
 
           tree.rotation.y = 360 * Math.random() * ( Math.PI / 180);
 
@@ -145,22 +146,25 @@ var pointLight =
        ;
     } );
 
-    /*var loaderTree = new THREE.ColladaLoader();
-    loaderTree.options.convertUpAxis = true;
-    loaderTree.load( 'tree2.dae', function ( collada ) {
+    var loaderTree2 = new THREE.ColladaLoader();
+    loaderTree2.options.convertUpAxis = true;
+    loaderTree2.load( 'collada/tree2.dae', function ( collada ) {
       dae = collada.scene;
       skin = collada.skins[ 0 ];
 
-        for( var t = 0; t < 25; t++ ){  
+        for( var t = 0; t < 40; t++ ){  
           //Character creation
           tree = new THREE.Mesh( collada.scene.children[ 0 ].geometry, collada.scene.children[ 0 ].material );
+          console.log( collada.scene );
+          //tree = new THREE.Mesh( collada.scene.children[ 0 ].geometry, new THREE.MeshBasicMaterial( { color: 0x034300 } ) );
+          //console.log(tree);
           if( castShadow ){
             tree.castShadow = true;
             tree.receiveShadow = true;
           }
-          tree.position.x = ( Math.random() * 9000 ) - 4500;
+          tree.position.x = ( Math.random() * 8500 ) - 4250;
           tree.position.y = -10;
-          tree.position.z = ( Math.random() * 9000 ) - 4500;
+          tree.position.z = ( Math.random() * 8500 ) - 4250;
 
           tree.rotation.y = 360 * Math.random() * ( Math.PI / 180);
 
@@ -171,7 +175,37 @@ var pointLight =
         }
 
        ;
-    } );*/
+    } );
+
+    var loaderTree3 = new THREE.ColladaLoader();
+    loaderTree3.options.convertUpAxis = true;
+    loaderTree3.load( 'collada/tree3.dae', function ( collada ) {
+      dae = collada.scene;
+      skin = collada.skins[ 0 ];
+
+        for( var t = 0; t < 40; t++ ){  
+          //Character creation
+          tree = new THREE.Mesh( collada.scene.children[ 0 ].geometry, collada.scene.children[ 0 ].material );
+          //tree = new THREE.Mesh( collada.scene.children[ 0 ].geometry, new THREE.MeshBasicMaterial( { color: 0x034300 } ) );
+          //console.log(tree);
+          if( castShadow ){
+            tree.castShadow = true;
+            tree.receiveShadow = true;
+          }
+          tree.position.x = ( Math.random() * 8500 ) - 4250;
+          tree.position.y = -10;
+          tree.position.z = ( Math.random() * 8500 ) - 4250;
+
+          tree.rotation.y = 360 * Math.random() * ( Math.PI / 180);
+
+          tree.scale.x = tree.scale.y = tree.scale.z = 2 * Math.random() + 4;
+          tree.updateMatrix();
+
+          scene.add( tree )
+        }
+
+       ;
+    } );
 
 
 
@@ -193,11 +227,11 @@ var pointLight =
 
 
   //Mountains
-  for( var m = 0; m < 9; m++ ){
+  for( var m = 0; m < 5; m++ ){
     var mountainXSeg = 15;
     var mountainYSeg = 15;
 
-    if( m == 8 ){
+    if( m == 4 ){
       mountainXSeg = 300;
       mountainYSeg = 300;
     }
@@ -207,7 +241,7 @@ var pointLight =
     var mountain = new THREE.Mesh( new THREE.PlaneGeometry( 10000, 10000, mountainXSeg, mountainYSeg ), new THREE.MeshBasicMaterial( { color: 0xffffff } ) );
     //Affecting vertices
     for( var i = 0; i < mountain.geometry.vertices.length; i++ ){
-      if( m != 8 ){
+      if( m != 4 ){
         mountain.geometry.vertices[ i ].z = Math.floor((Math.random()*1500)+1);
       }
       else{
@@ -246,42 +280,22 @@ var pointLight =
     
 
     if( m == 0 ){
-      mountain.position.x = 9500;
+      mountain.position.x = 9000;
       mountain.position.y = 5;
     }
     else if( m == 1 ){
-      mountain.position.x = -9500;
+      mountain.position.x = -9000;
       mountain.position.y = 5;
     }
     else if( m == 2 ){
-      mountain.position.z = 9500;
+      mountain.position.z = 9000;
       mountain.position.y = 5;
     }
     else if( m == 3 ){
-      mountain.position.z = -9500;
+      mountain.position.z = -9000;
       mountain.position.y = 5;
     }
     else if( m == 4 ){
-      mountain.position.x = -9500;
-      mountain.position.z = -9500;
-      mountain.position.y = 5;
-    }
-    else if( m == 5 ){
-      mountain.position.x = 9500;
-      mountain.position.z = 9500;
-      mountain.position.y = 5;
-    }
-    else if( m == 6 ){
-      mountain.position.x = 9500;
-      mountain.position.z = -9500;
-      mountain.position.y = 5;
-    }
-    else if( m == 7 ){
-      mountain.position.x = -9500;
-      mountain.position.z = 9500;
-      mountain.position.y = 5;
-    }
-    else if( m == 8 ){
       mountain.position.y = -10;
 
       if( castShadow ){
@@ -290,7 +304,7 @@ var pointLight =
       }
     }
 
-    if( m != 8 ){
+    if( m != 4 ){
       var subdiv = 3;
       /*var modifier = new THREE.SubdivisionModifier( subdiv );
       modifier.modify( mountain.geometry );*/
@@ -314,7 +328,7 @@ var pointLight =
 
 
   //Handling mouse control
-  controls = new THREE.OrbitControls(camera, renderer.domElement);
+  //controls = new THREE.OrbitControls(camera, renderer.domElement);
 
   //Launch the drawing loop!
   setInterval( function(){
@@ -400,7 +414,7 @@ function renderloop(){
   character.translateZ( -heroVel );
 
 
-snowTrailEmitter.position.y = -120 + heroVel * 6;
+/*snowTrailEmitter.position.y = -120 + heroVel * 6;
 
 var delta = 0.5;
 var particleCount = snowTrailParticules.vertices.length;
@@ -416,9 +430,9 @@ while (particleCount--) {
       particle.z = Math.random() * 150 - 75;
    }
 }
-snowTrailParticules.__dirtyVertices = true;
+snowTrailParticules.__dirtyVertices = true;*/
 
-  renderer.render(scene, camera);controls.update();
+  renderer.render(scene, camera);
 
   //console.log( floor.geometry.vertices[0] );
 
@@ -447,16 +461,142 @@ snowTrailParticules.__dirtyVertices = true;
 }
 
 function popPresent(){
-  //Balls
-  presents = [];
-  for( var i = 0; i < 50; i++ ){
-      //Sphères
-      var p = new THREE.Mesh( new THREE.CubeGeometry( 150, 150, 150, 1, 1, 1), new THREE.MeshBasicMaterial( { color: 0xff0000 } ) );
-      p.position.x = ( Math.random() * 9000 ) - 4500;
-      p.position.y = 100;
-      p.position.z = ( Math.random() * 9000 ) - 4500;
 
-      presents.push( p );
-      scene.add( p );
-    }
+  presents = [];
+
+  var loaderPresent = new THREE.ColladaLoader();
+    loaderPresent.options.convertUpAxis = true;
+    loaderPresent.load( 'collada/cadeau.dae', function ( collada ) {
+      dae = collada.scene;
+      skin = collada.skins[ 0 ];
+
+        for( var t = 0; t < 12; t++ ){  
+          //Character creation
+          //tree = new THREE.Mesh( collada.scene.children[ 0 ].geometry, collada.scene.children[ 0 ].material );
+          var p = new THREE.Mesh( collada.scene.children[ 0 ].geometry, collada.scene.children[ 0 ].material );
+          //console.log(tree);
+          if( castShadow ){
+            p.castShadow = true;
+            p.receiveShadow = true;
+          }
+          p.position.x = ( Math.random() * 8500 ) - 4250;
+          p.position.y = 0;
+          p.position.z = ( Math.random() * 8500 ) - 4250;
+
+          p.rotation.x = Math.random() * 360 * ( Math.PI / 180);
+          p.rotation.y = Math.random() * 360 * ( Math.PI / 180);
+          p.rotation.z = Math.random() * 360 * ( Math.PI / 180);
+
+          p.scale.x = p.scale.y = p.scale.z = 2 * Math.random() + 1.5;
+          p.updateMatrix();
+
+         presents.push( p )
+
+          scene.add( p )
+        }
+
+       ;
+    } );
+
+    var loaderPresent2 = new THREE.ColladaLoader();
+    loaderPresent.options.convertUpAxis = true;
+    loaderPresent.load( 'collada/cadeau.dae', function ( collada ) {
+      dae = collada.scene;
+      skin = collada.skins[ 0 ];
+
+        for( var t = 0; t < 12; t++ ){  
+          //Character creation
+          //tree = new THREE.Mesh( collada.scene.children[ 0 ].geometry, collada.scene.children[ 0 ].material );
+          var p = new THREE.Mesh( collada.scene.children[ 0 ].geometry, collada.scene.children[ 0 ].material );
+          //console.log(tree);
+          if( castShadow ){
+            p.castShadow = true;
+            p.receiveShadow = true;
+          }
+          p.position.x = ( Math.random() * 8500 ) - 4250;
+          p.position.y = 0;
+          p.position.z = ( Math.random() * 8500 ) - 4250;
+
+          p.rotation.x = Math.random() * 360 * ( Math.PI / 180);
+          p.rotation.y = Math.random() * 360 * ( Math.PI / 180);
+          p.rotation.z = Math.random() * 360 * ( Math.PI / 180);
+
+          p.scale.x = p.scale.y = p.scale.z = 2 * Math.random() + 1.5;
+          p.updateMatrix();
+
+         presents.push( p )
+
+          scene.add( p )
+        }
+
+       ;
+    } );
+
+    var loaderPresent3 = new THREE.ColladaLoader();
+    loaderPresent.options.convertUpAxis = true;
+    loaderPresent.load( 'collada/cadeau3.dae', function ( collada ) {
+      dae = collada.scene;
+      skin = collada.skins[ 0 ];
+
+        for( var t = 0; t < 12; t++ ){  
+          //Character creation
+          //tree = new THREE.Mesh( collada.scene.children[ 0 ].geometry, collada.scene.children[ 0 ].material );
+          var p = new THREE.Mesh( collada.scene.children[ 0 ].geometry, collada.scene.children[ 0 ].material );
+          //console.log(tree);
+          if( castShadow ){
+            p.castShadow = true;
+            p.receiveShadow = true;
+          }
+          p.position.x = ( Math.random() * 8500 ) - 4250;
+          p.position.y = 0;
+          p.position.z = ( Math.random() * 8500 ) - 4250;
+
+          p.rotation.x = Math.random() * 360 * ( Math.PI / 180);
+          p.rotation.y = Math.random() * 360 * ( Math.PI / 180);
+          p.rotation.z = Math.random() * 360 * ( Math.PI / 180);
+
+          p.scale.x = p.scale.y = p.scale.z = 2 * Math.random() + 1.5;
+          p.updateMatrix();
+
+         presents.push( p )
+
+          scene.add( p )
+        }
+
+       ;
+    } );
+
+    var loaderPresent4 = new THREE.ColladaLoader();
+    loaderPresent.options.convertUpAxis = true;
+    loaderPresent.load( 'collada/cadeau4.dae', function ( collada ) {
+      dae = collada.scene;
+      skin = collada.skins[ 0 ];
+
+        for( var t = 0; t < 12; t++ ){  
+          //Character creation
+          //tree = new THREE.Mesh( collada.scene.children[ 0 ].geometry, collada.scene.children[ 0 ].material );
+          var p = new THREE.Mesh( collada.scene.children[ 0 ].geometry, collada.scene.children[ 0 ].material );
+          //console.log(tree);
+          if( castShadow ){
+            p.castShadow = true;
+            p.receiveShadow = true;
+          }
+          p.position.x = ( Math.random() * 8500 ) - 4250;
+          p.position.y = 0;
+          p.position.z = ( Math.random() * 8500 ) - 4250;
+
+          p.rotation.x = Math.random() * 360 * ( Math.PI / 180);
+          p.rotation.y = Math.random() * 360 * ( Math.PI / 180);
+          p.rotation.z = Math.random() * 360 * ( Math.PI / 180);
+
+          p.scale.x = p.scale.y = p.scale.z = 2 * Math.random() + 1.5;
+          p.updateMatrix();
+
+         presents.push( p )
+
+          scene.add( p )
+        }
+
+       ;
+    } );
 }
